@@ -1,11 +1,11 @@
-var view_percent = 40;
+const view_percent = 40;
 function reveal() {
-    var reveals = document.querySelectorAll(".reveal");
-    var windowHeight = window.innerHeight;
-    var elementVisible = windowHeight * (view_percent/100);
-    var threshold = windowHeight - elementVisible
-    for (var count = 0; count < reveals.length; count++) {
-        var elementTop = reveals[count].getBoundingClientRect().top;
+    const reveals = document.querySelectorAll(".reveal");
+    const windowHeight = window.innerHeight;
+    const elementVisible = windowHeight * (view_percent/100);
+    const threshold = windowHeight - elementVisible
+    for (let count = 0; count < reveals.length; count++) {
+        const elementTop = reveals[count].getBoundingClientRect().top;
         if (elementTop < threshold) {
             reveals[count].classList.add("active");
         } else {
@@ -13,18 +13,18 @@ function reveal() {
         }
     }
 
-    var lines = document.getElementsByClassName('line');
-    var line_height = windowHeight * (100 - view_percent)/100;
-    var min_line_height = 400;
+    const lines = document.getElementsByClassName('line');
+    let line_height = windowHeight * (100 - view_percent)/100;
+    const min_line_height = 400;
     if (line_height < min_line_height) {
         line_height = min_line_height;
     }
-    for (var count = 0; count < lines.length; count++) {
+    for (let count = 0; count < lines.length; count++) {
         if (lines[count].classList.contains('active')) {
             lines[count].style.height = line_height.toString() + 'px';
         } else {
             if (count === lines.length - 1) {
-                var last_line_height = windowHeight * (view_percent/100) 
+                const last_line_height = windowHeight * (view_percent/100) 
                 lines[count].style.height = last_line_height.toString() + 'px';
             } else {
                 lines[count].style.height = "1px";
@@ -33,26 +33,29 @@ function reveal() {
     }
 
 
-    var texts = document.getElementsByClassName('text');
-    var windowWidth = window.innerWidth;
-    var windowArea = windowHeight * windowWidth;
-    for (var count = 0; count < texts.length; count++) {
+    const texts = document.getElementsByClassName('text');
+    const windowWidth = window.innerWidth;
+    const windowArea = windowHeight * windowWidth;
+    let min_font_size = 50;
+    let max_font_size = 200;
+    let font_size = windowArea * 0.00002 * 5;
+    for (let count = 0; count < texts.length; count++) {
         if (count === 0) {
-            var min_font_size = 50;
-            var max_font_size = 200;
-            var font_size = windowArea * 0.00002 * 5;
+            min_font_size = 50;
+            max_font_size = 200;
+            font_size = windowArea * 0.00002 * 5;
         } else if (count === 1) {
-            var min_font_size = 40;
-            var max_font_size = 150;
-            var font_size = windowArea * 0.00001 * 3;
+            min_font_size = 40;
+            max_font_size = 150;
+            font_size = windowArea * 0.00001 * 3;
         } else if (count === texts.length - 1) {
-            var min_font_size = 20;
-            var max_font_size = 50;
-            var font_size = windowArea * 0.00001 * 1;
+            min_font_size = 20;
+            max_font_size = 50;
+            font_size = windowArea * 0.00001 * 1;
         } else {
-            var min_font_size = 30;
-            var max_font_size = 100;
-            var font_size = windowArea * 0.00001 * 2;
+            min_font_size = 30;
+            max_font_size = 100;
+            font_size = windowArea * 0.00001 * 2;
         }
 
         if (font_size > max_font_size) {
@@ -69,25 +72,25 @@ function reveal() {
 }
 
 function revealTop() {
-    var reveals = document.querySelectorAll(".reveal");
+    const reveals = document.querySelectorAll(".reveal");
     reveals[0].classList.add("active");
     setTimeout(() => reveals[1].classList.add("active"), 500);
 
-    var lines = document.getElementsByClassName('line');
-    var windowHeight = window.innerHeight;
-    var line_height = windowHeight * (100 - view_percent)/100;
-    var min_line_height = 400;
+    const lines = document.getElementsByClassName('line');
+    const windowHeight = window.innerHeight;
+    let line_height = windowHeight * (100 - view_percent)/100;
+    const min_line_height = 400;
     if (line_height < min_line_height) {
         line_height = min_line_height;
     }
     lines[0].style.height = line_height.toString() + 'px';
 
-    var texts = document.getElementsByClassName('text');
-    var windowWidth = window.innerWidth;
-    var windowArea = windowHeight * windowWidth;
-    var min_font_size = 50;
-    var max_font_size = 200;
-    var font_size = windowArea * 0.00002 * 5;
+    const texts = document.getElementsByClassName('text');
+    const windowWidth = window.innerWidth;
+    const windowArea = windowHeight * windowWidth;
+    const min_font_size = 50;
+    const max_font_size = 200;
+    let font_size = windowArea * 0.00002 * 5;
     if (font_size > max_font_size) {
         font_size = max_font_size;
     } else if (font_size < min_font_size) {
